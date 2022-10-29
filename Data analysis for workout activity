@@ -1,0 +1,58 @@
+USE fitness_tracker;
+SELECT  * FROM activity;
+
+-- Number of users
+SELECT COUNT(*) AS number_of_users
+FROM activity;
+
+-- Distinct workouts
+SELECT DISTINCT(workout_type)
+FROM activity;
+
+-- Average time(in minutes) spent on workouts
+SELECT AVG(time) AS avg_time_spent_on_workouts
+FROM activity;
+
+-- What workouts were practiced frequently in the month of January?
+SELECT DISTINCT workout_type, COUNT(workout_type) AS count_per_workout_type
+FROM activity
+GROUP BY workout_type
+ORDER BY count_per_workout_type DESC;
+
+-- What was the maximum calorie burned for each phyical activity across all users?
+SELECT DISTINCT workout_type, MAX(calories) as max_cal_burnt
+FROM activity
+GROUP BY workout_type
+ORDER BY max_cal_burnt DESC;
+
+-- What is the most frequent workout on saturdays?
+SELECT workout_type, COUNT(workout_type) as count_per_workout_type
+FROM activity
+WHERE activity_day LIKE 'Saturday%' AND 
+      (workout_type IN ('Outdoor Running','Treadmill',
+                        'Outdoor Cycling', 'Indoor Cycling',
+                        'Freestyle', 'Walking', 
+                        'Trekking', 'Trail Run',
+                        'Pool swimming', 'Open Water',
+                        'Cricket'))
+GROUP BY workout_type
+ORDER BY count_per_workout_type DESC;
+
+-- What is the maximum distance ever travelled by a user throughout the month for each workout type?
+SELECT DISTINCT workout_type, MAX(distance) as max_distance_travelled
+FROM activity
+GROUP BY workout_type
+ORDER BY max_distance_travelled DESC;
+
+/*
+What is the most effective workout?
+   We create two new variables. 
+First, calculate the number of calories burnt per minute
+Second, measure if the activity improves aerobic performance based on maximum heart rate(Yes/no)
+*/
+
+SELECT workout_type, calories/time as cal_burnt_per_minute,
+        CASE WHEN max_heart_rate >= 150 THEN 'Yes'
+              WHEN max_heart_rate < 150 THEN 'No'
+        END AS improvement
+FROM activity;
