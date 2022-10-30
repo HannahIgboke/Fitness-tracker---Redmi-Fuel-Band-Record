@@ -1,4 +1,7 @@
+-- To specify the particular database for analysis
 USE fitness_tracker;
+
+-- To have an overall view of the table contents
 SELECT  * FROM activity;
 
 -- Number of users
