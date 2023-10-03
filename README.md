@@ -22,4 +22,4 @@ Data analysis: Structured Query Language(SQL)
 
 Data visualization: Microsoft Power BI
 
-Find full documentation here: https://medium.com/@danielhannah663/redmi-fuel-band-users-workout-analysis-for-the-month-of-january-8806e88ffc5b
+Find full documentation [here](https://medium.com/@danielhannah663/redmi-fuel-band-users-workout-analysis-for-the-month-of-january-8806e88ffc5b)
